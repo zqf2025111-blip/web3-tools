@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoToolsHub - The Ultimate Web3 & Crypto Directory</title>
+    <meta name="description" content="Discover the best Web3 tools, DeFi protocols, NFT marketplaces, and crypto analytics platforms. CryptoToolsHub is your curated directory for the decentralized world.">
+    <meta name="keywords" content="Web3 tools, Crypto directory, DeFi list, NFT tools, Blockchain analytics, Crypto wallets, DEX aggregator">
+    <meta property="og:title" content="CryptoToolsHub - The Ultimate Web3 & Crypto Directory">
+    <meta property="og:description" content="A curated list of 35+ essential Web3 tools including DEXs, Wallets, Analytics, and DeFi protocols.">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --bg-dark: #0f051d;
+            --card-bg: #1a0b2e;
+            --accent-purple: #7b2ff7;
+            --accent-gold: #f3ba2f;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-color: #3d2b5e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a0b2e 0%, #0f051d 100%);
+            padding: 2rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .logo span {
+            color: var(--accent-purple);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--border-color);
+            border-radius: 30px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #search-input:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 15px rgba(123, 47, 247, 0.3);
+        }
+
+        .ad-slot {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed #555;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .ad-top { width: 728px; height: 90px; }
+        .ad-sidebar { width: 300px; height: 600px; }
+        .ad-inline { width: 100%; height: 250px; margin: 2rem 0; }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 2rem;
+            max-width: 1600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        aside.sidebar {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .filter-title {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .category-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            text-align: left;
+            background: none;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: rgba(123, 47, 247, 0.15);
+            color: white;
+            border-color: var(--accent-purple);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--accent-purple);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+
+        .tool-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .tool-category {
+            font-size: 0.75rem;
+            background: rgba(123, 47, 247, 0.2);
+            color: var(--accent-purple);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .tool-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tool-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .tool-status {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-free { color: #4caf50; }
+        .status-paid { color: #ff9800; }
+
+        .tool-link {
+            background: var(--accent-gold);
+            color: #000;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+
+        .tool-link:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 3rem 1rem;
+            background: #080211;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .disclosure {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 1200px) {
+            .main-layout {
+                grid-template-columns: 220px 1fr;
+            }
+            .sidebar-right { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            aside.sidebar {
+                position: relative;
+                top: 0;
+                margin-bottom: 2rem;
+            }
+            .ad-top { width: 100%; height: auto; min-height: 50px; }
+            .logo { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Crypto<span>Tools</span>Hub</div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search 35+ Web3 tools (e.g. 'Uniswap', 'DeFi', 'Solana')...">
+        </div>
+        <div class="ad-slot ad-top">Google AdSense - Header Banner</div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="filter-title">Categories</div>
+            <button class="category-btn active" onclick="filterCategory('All')">All Tools</button>
+            <button class="category-btn" onclick="filterCategory('DEX & Trading')">DEX & Trading</button>
+            <button class="category-btn" onclick="filterCategory('Wallets')">Wallets</button>
+            <button class="category-btn" onclick="filterCategory('Portfolio Tracking')">Portfolio Tracking</button>
+            <button class="category-btn" onclick="filterCategory('NFT Tools')">NFT Tools</button>
+            <button class="category-btn" onclick="filterCategory('DeFi Yield')">DeFi Yield</button>
+            <button class="category-btn" onclick="filterCategory('Analytics & Data')">Analytics & Data</button>
+            <button class="category-btn" onclick="filterCategory('Security')">Security</button>
+            <button class="category-btn" onclick="filterCategory('Bridge & Cross-chain')">Bridge & Cross-chain</button>
+            <button class="category-btn" onclick="filterCategory('Developer Tools')">Developer Tools</button>
+            <button class="category-btn" onclick="filterCategory('News & Research')">News & Research</button>
+        </aside>
+
+        <main>
+            <div id="tools-container" class="tools-grid">
+                <!-- Tools injected by JS -->
+            </div>
+            <div class="ad-slot ad-inline">Google AdSense - Content Inline</div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="ad-slot ad-sidebar">Google AdSense - Sidebar</div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 CryptoToolsHub. All rights reserved.</p>
+        <div class="disclosure">
+            Affiliate Disclosure: Some links on this site may be affiliate links. We may receive a small commission if you sign up or purchase services through these links at no extra cost to you. This helps support the maintenance of our free directory. We only list reputable projects within the Web3 ecosystem.
+        </div>
+    </footer>
+
+    <script>
+        const tools = [
+            {
+                name: "Uniswap",
+                category: "DEX & Trading",
+                icon: "🦄",
+                description: "Uniswap is the premier decentralized exchange (DEX) operating on Ethereum and multiple Layer 2 networks. It utilizes an automated liquidity protocol that enables users to swap ERC-20 tokens directly from their wallets. As a pioneer in DeFi, Uniswap provides massive liquidity and a permissionless environment for trading, making it a foundational layer of the decentralized financial ecosystem worldwide.",
+                status: "Free",
+                url: "https://uniswap.org/"
+            },
+            {
+                name: "Jupiter",
+                category: "DEX & Trading",
+                icon: "🪐",
+                description: "Jupiter is the leading swap aggregator on the Solana blockchain, offering the best rates by routing trades across multiple liquidity sources. It provides a seamless user experience with features like limit orders, DCA (Dollar Cost Averaging), and bridge integration. Jupiter is essential for anyone trading on Solana, ensuring minimal slippage and maximum efficiency for retail and pro traders alike.",
+                status: "Free",
+                url: "https://jup.ag/"
+            },
+            {
+                name: "dYdX",
+                category: "DEX & Trading",
+                icon: "📈",
+                description: "dYdX is a powerful decentralized exchange for perpetual trading, operating on its own dedicated blockchain. It offers professional-grade trading features including leverage, deep liquidity, and low fees. By moving to a sovereign chain, dYdX has significantly improved performance and decentralization, allowing users to trade crypto assets with the speed of a centralized exchange while maintaining custody of their funds.",
+                status: "Free",
+                url: "https://dydx.exchange/"
+            },
+            {
+                name: "GMX",
+                category: "DEX & Trading",
+                icon: "🫐",
+                description: "GMX is a decentralized spot and perpetual exchange that supports low swap fees and zero price impact trades. It allows users to trade major cryptocurrencies with up to 50x leverage directly from their wallets on Arbitrum and Avalanche. The protocol is backed by a multi-asset pool that earns fees from market making, swap fees, and leverage trading, providing unique yield opportunities for providers.",
+                status: "Free",
+                url: "https://gmx.io/"
+            },
+            {
+                name: "1inch",
+                category: "DEX & Trading",
+                icon: "🦄",
+                description: "1inch is a multi-chain decentralized exchange aggregator that scans various liquidity sources to find the most efficient swap paths for users. By splitting orders across different protocols, it minimizes slippage and provides better rates than any single DEX. 1inch also offers a secure wallet and limit order functionality, making it a comprehensive tool for decentralized trading across major EVM networks.",
+                status: "Free",
+                url: "https://1inch.io/"
+            },
+            {
+                name: "MetaMask",
+                category: "Wallets",
+                icon: "🦊",
+                description: "MetaMask is the world's leading self-custody Web3 wallet and gateway to decentralized applications. Available as a browser extension and mobile app, it allows millions of users to store, manage, and swap digital assets across Ethereum and EVM-compatible networks. MetaMask provides a secure way to interact with DeFi, NFTs, and the broader blockchain ecosystem while keeping users in full control of their private keys.",
+                status: "Free",
+                url: "https://metamask.io/"
+            },
+            {
+                name: "Phantom",
+                category: "Wallets",
+                icon: "👻",
+                description: "Phantom is the premier multi-chain wallet designed for Solana, Ethereum, and Polygon. It offers a user-friendly interface for managing tokens, collecting NFTs, and interacting with decentralized apps. With its built-in swap feature and robust security measures, Phantom makes it easy for newcomers and veterans to explore the crypto landscape with confidence. It is widely considered the gold standard for Solana-based interactions.",
+                status: "Free",
+                url: "https://phantom.app/"
+            },
+            {
+                name: "Rainbow",
+                category: "Wallets",
+                icon: "🌈",
+                description: "Rainbow is a beautifully designed, fun, and easy-to-use mobile wallet for Ethereum and Layer 2 solutions. It focuses on a superior user experience, making it simple to buy, swap, and showcase NFTs. Rainbow integrates deeply with Web3 protocols to provide a streamlined interface that hides the complexity of blockchain interactions while maintaining the highest standards of security and self-custody for its global user base.",
+                status: "Free",
+                url: "https://rainbow.me/"
+            },
+            {
+                name: "Rabby",
+                category: "Wallets",
+                icon: "🐰",
+                description: "Rabby is a modern game-changing browser wallet specifically designed for Ethereum and EVM-compatible chains. It prioritizes security by providing clear transaction explanations and pre-transaction risk checks. Rabby automatically switches chains based on the site you are visiting, making the multi-chain experience seamless. It is highly praised by power users for its transparency and advanced management of complex smart contract interactions.",
+                status: "Free",
+                url: "https://rabby.io/"
+            },
+            {
+                name: "Trust Wallet",
+                category: "Wallets",
+                icon: "🛡️",
+                description: "Trust Wallet is a versatile multi-chain mobile wallet that supports millions of assets across 100+ blockchains. It allows users to safely store, send, receive, and stake their cryptocurrencies. With an integrated DApp browser, Trust Wallet provides a direct link to the decentralized world. It is owned by Binance but remains a non-custodial wallet, ensuring that users have exclusive access to their own private seeds.",
+                status: "Free",
+                url: "https://trustwallet.com/"
+            },
+            {
+                name: "Zapper",
+                category: "Portfolio Tracking",
+                icon: "⚡",
+                description: "Zapper is a comprehensive DeFi dashboard that allows users to monitor their entire crypto portfolio across multiple chains and protocols. It simplifies the management of DeFi positions by aggregating assets, debts, and liquidity pool stakes into a single interface. Zapper also enables users to swap tokens and bridge assets, making it a powerful all-in-one tool for active participants in the decentralized financial ecosystem.",
+                status: "Free",
+                url: "https://zapper.fi/"
+            },
+            {
+                name: "DeBank",
+                category: "Portfolio Tracking",
+                icon: "🏦",
+                description: "DeBank is a leading DeFi portfolio tracker that provides deep insights into user wallets across nearly all active blockchain networks. It excels at identifying complex yield farming positions and staked assets that other trackers might miss. DeBank has also introduced social features, allowing users to follow whales and track real-time on-chain activities, making it both a financial tool and a social analytics platform.",
+                status: "Free",
+                url: "https://debank.com/"
+            },
+            {
+                name: "Zerion",
+                category: "Portfolio Tracking",
+                icon: "0️⃣",
+                description: "Zerion is an intuitive investment interface for DeFi that makes it easy to manage and grow your crypto portfolio. It offers a clean mobile and web experience for tracking assets, trading tokens, and exploring new investment opportunities. Zerion's smart engine aggregates data from hundreds of protocols, providing users with a holistic view of their net worth, historical performance, and transaction history in real-time.",
+                status: "Free",
+                url: "https://zerion.io/"
+            },
+            {
+                name: "CoinGecko",
+                category: "Portfolio Tracking",
+                icon: "🦎",
+                description: "CoinGecko is one of the world's largest independent cryptocurrency data aggregators, tracking price, volume, and market capitalization for thousands of coins. It provides a robust portfolio tool where users can manually track their holdings or link their accounts. Beyond pricing, CoinGecko offers in-depth research reports, community growth metrics, and developer activity data, serving as a critical resource for market research and due diligence.",
+                status: "Free",
+                url: "https://www.coingecko.com/"
+            },
+            {
+                name: "OpenSea",
+                category: "NFT Tools",
+                icon: "🌊",
+                description: "OpenSea is the world's first and largest digital marketplace for crypto collectibles and non-fungible tokens (NFTs). It allows users to buy, sell, and discover exclusive digital items across various categories including art, gaming, and domain names. OpenSea supports multiple blockchains and provides a user-friendly platform for creators to mint their own NFTs, remaining the primary entry point for the vast majority of NFT enthusiasts.",
+                status: "Free",
+                url: "https://opensea.io/"
+            },
+            {
+                name: "Blur",
+                category: "NFT Tools",
+                icon: "🌫️",
+                description: "Blur is a high-performance NFT marketplace and aggregator specifically built for professional traders. It offers incredibly fast sweeps, real-time data feeds, and advanced portfolio management tools that aren't available on traditional platforms. Blur incentivizes liquidity through its unique reward system and allows traders to list across multiple marketplaces simultaneously, significantly improving the efficiency and depth of the NFT market for high-volume participants.",
+                status: "Free",
+                url: "https://blur.io/"
+            },
+            {
+                name: "Magic Eden",
+                category: "NFT Tools",
+                icon: "🪄",
+                description: "Magic Eden is a leading cross-chain NFT platform that initially dominated the Solana ecosystem before expanding to Bitcoin, Ethereum, and Polygon. It provides a highly curated launchpad for new projects and a robust secondary market for existing collections. Magic Eden focuses on community and creator support, offering tools that help developers launch successful NFT projects while providing collectors with a seamless, feature-rich trading experience.",
+                status: "Free",
+                url: "https://magiceden.io/"
+            },
+            {
+                name: "Tensor",
+                category: "NFT Tools",
+                icon: "📐",
+                description: "Tensor is the pro-trader NFT marketplace on Solana, designed to offer a Bloomberg-like experience for digital assets. It features advanced charting, real-time sales data, and powerful automation tools for professional NFT trading. Tensor has quickly become a favorite for those looking for deep liquidity and fast execution on Solana, offering features like floor price bidding and collection-wide sweeps with extremely low latency.",
+                status: "Free",
+                url: "https://www.tensor.trade/"
+            },
+            {
+                name: "Aave",
+                category: "DeFi Yield",
+                icon: "👻",
+                description: "Aave is a decentralized non-custodial liquidity market protocol where users can participate as depositors or borrowers. Depositors provide liquidity to the market to earn a passive income, while borrowers are able to borrow in an overcollateralized fashion. Aave is known for its innovative features like flash loans and stable rate borrowing, making it one of the most trusted and battle-tested protocols in the entire DeFi space.",
+                status: "Free",
+                url: "https://aave.com/"
+            },
+            {
+                name: "Lido",
+                category: "DeFi Yield",
+                icon: "🏝️",
+                description: "Lido is a liquid staking solution for Ethereum and other PoS blockchains. It allows users to stake their assets without locking them or maintaining infrastructure, receiving a liquid token (like stETH) in return that can be used across DeFi. This solves the liquidity problem of traditional staking, enabling users to earn staking rewards while simultaneously participating in other yield-generating activities, thus maximizing their capital efficiency.",
+                status: "Free",
+                url: "https://lido.fi/"
+            },
+            {
+                name: "Compound",
+                category: "DeFi Yield",
+                icon: "🧪",
+                description: "Compound is an algorithmic, autonomous interest rate protocol built for developers to unlock a universe of open financial applications. It allows users to deposit cryptocurrencies into lending pools to earn interest or borrow against their holdings. Compound's transparent and decentralized nature ensures that interest rates are set by supply and demand, providing a reliable and permissionless foundation for decentralized money markets on the Ethereum blockchain.",
+                status: "Free",
+                url: "https://compound.finance/"
+            },
+            {
+                name: "Yearn",
+                category: "DeFi Yield",
+                icon: "🏦",
+                description: "Yearn Finance is a suite of products in Decentralized Finance (DeFi) that provides yield generating, lending aggregation, and more on blockchain. The protocol is governed by YFI holders and is designed to maximize user profits by automatically shifting capital between different lending protocols. Yearn's 'Vaults' are particularly popular, as they execute complex automated strategies to find the best risk-adjusted returns for depositors across the ecosystem.",
+                status: "Free",
+                url: "https://yearn.fi/"
+            },
+            {
+                name: "Pendle",
+                category: "DeFi Yield",
+                icon: "💧",
+                description: "Pendle is a permissionless yield-trading protocol where users can execute various yield-management strategies. By wrapping yield-bearing tokens into SY (standardized yield) and then splitting them into principal and yield components, Pendle allows users to lock in future yields or speculate on yield fluctuations. This introduces a sophisticated layer of fixed-income products and yield derivatives to the DeFi market, catering to both institutional and retail yield seekers.",
+                status: "Free",
+                url: "https://www.pendle.finance/"
+            },
+            {
+                name: "Dune",
+                category: "Analytics & Data",
+                icon: "📊",
+                description: "Dune is a powerful blockchain data platform that allows anyone to create, share, and explore dashboards based on on-chain data. It translates complex blockchain records into human-readable SQL databases, enabling community members to track protocol health, token distributions, and market trends. Dune's collaborative environment has made it the go-to source for real-time crypto analytics, powering much of the industry's research and transparent reporting efforts.",
+                status: "Free",
+                url: "https://dune.com/"
+            },
+            {
+                name: "Nansen",
+                category: "Analytics & Data",
+                icon: "🔍",
+                description: "Nansen is a blockchain analytics platform that enriches on-chain data with millions of wallet labels. It provides crypto investors and entities with the tools to discover opportunities, perform due diligence, and defend their portfolios with real-time alerts. Nansen's strength lies in its ability to identify 'Smart Money' flows—tracking the moves of high-performing wallets, venture funds, and institutional players to give users a competitive edge in the market.",
+                status: "Paid",
+                url: "https://www.nansen.ai/"
+            },
+            {
+                name: "Glassnode",
+                category: "Analytics & Data",
+                icon: "📈",
+                description: "Glassnode is a leading on-chain data and intelligence provider that generates innovative metrics and insights from blockchain data. It focuses on delivering high-quality market signals through indicators like exchange balances, miner activity, and realized cap. Glassnode helps investors understand market cycles and sentiment by providing a deep dive into the fundamental economic activity happening on the most prominent blockchains, particularly Bitcoin and Ethereum.",
+                status: "Paid",
+                url: "https://glassnode.com/"
+            },
+            {
+                name: "Arkham",
+                category: "Analytics & Data",
+                icon: "👁️",
+                description: "Arkham Intelligence is an on-chain analysis platform that uses AI to deanonymize the entities behind crypto wallet addresses. It provides users with a comprehensive view of the people and organizations involved in the crypto market, along with their holdings and transaction history. Arkham's Intel Exchange allows users to buy and sell on-chain information, creating a unique marketplace for blockchain research and providing unprecedented transparency into crypto market dynamics.",
+                status: "Free",
+                url: "https://www.arkhamintelligence.com/"
+            },
+            {
+                name: "Revoke.cash",
+                category: "Security",
+                icon: "🛡️",
+                description: "Revoke.cash is an essential security tool that helps users manage their token approvals and protect their assets from malicious smart contracts. Many DApps require permission to spend your tokens, which can be a significant risk if the contract is compromised. Revoke.cash allows you to easily view all your active approvals across dozens of chains and revoke them instantly, ensuring that only trusted applications have access to your funds.",
+                status: "Free",
+                url: "https://revoke.cash/"
+            },
+            {
+                name: "De.Fi",
+                category: "Security",
+                icon: "🦸",
+                description: "De.Fi is the world's first Web3 SuperApp and Antivirus, offering a comprehensive suite of security tools for the decentralized world. It features a scanner that analyzes smart contracts for vulnerabilities and a dashboard that monitors your portfolio for potential risks. De.Fi also provides a history of crypto hacks and scams through its Rekt Database, educating users and helping them navigate the complex and often dangerous DeFi landscape safely.",
+                status: "Free",
+                url: "https://de.fi/"
+            },
+            {
+                name: "GoPlus",
+                category: "Security",
+                icon: "🛡️",
+                description: "GoPlus Security is a leading Web3 security infrastructure provider that offers open, permissionless, and user-driven security services. Its suite includes token security API, NFT security API, and malicious address API, which are used by many wallets and platforms to protect their users. GoPlus empowers the community to perform their own security audits on tokens and contracts, significantly reducing the success rate of honeypots and rug pulls in the market.",
+                status: "Free",
+                url: "https://gopluslabs.io/"
+            },
+            {
+                name: "Certik",
+                category: "Security",
+                icon: "⚔️",
+                description: "CertiK is a pioneer in blockchain security, utilizing best-in-class Formal Verification and AI technology to secure and monitor blockchains, smart contracts, and Web3 apps. Their mission is to secure the cyber world by providing comprehensive security audits and real-time monitoring services. Projects with a CertiK audit are often viewed with higher trust by the community, as the firm meticulously checks code for flaws and vulnerabilities before and after deployment.",
+                status: "Paid",
+                url: "https://www.certik.com/"
+            },
+            {
+                name: "LayerZero",
+                category: "Bridge & Cross-chain",
+                icon: "🌉",
+                description: "LayerZero is an omnichain interoperability protocol designed for lightweight message passing across chains. It provides authentic and guaranteed message delivery with configurable trustlessness. By allowing developers to build seamless cross-chain applications, LayerZero eliminates the need for complex intermediate bridges, enabling a future where tokens and data can move freely between different blockchain ecosystems without compromising on security or user experience.",
+                status: "Free",
+                url: "https://layerzero.network/"
+            },
+            {
+                name: "Wormhole",
+                category: "Bridge & Cross-chain",
+                icon: "🌀",
+                description: "Wormhole is a generic message-passing protocol that connects high-value blockchains. It enables developers to build cross-chain applications that leverage the unique strengths of different networks. Wormhole powers a wide range of use cases, from token bridges to cross-chain governance and NFT transfers. Its robust architecture and wide network of guardians ensure that messages and assets are transferred securely across the most popular ecosystems in crypto.",
+                status: "Free",
+                url: "https://wormhole.com/"
+            },
+            {
+                name: "Stargate",
+                category: "Bridge & Cross-chain",
+                icon: "⭐",
+                description: "Stargate is a fully composable liquidity transport protocol that lives at the heart of Omnichain DeFi. Built on LayerZero, it allows users and DApps to transfer native assets cross-chain while accessing the protocol's unified liquidity pools with instant guaranteed finality. Stargate simplifies the cross-chain experience by removing the need for wrapped tokens, allowing for a more capital-efficient and secure way to move value across the blockchain world.",
+                status: "Free",
+                url: "https://stargate.finance/"
+            },
+            {
+                name: "Across",
+                category: "Bridge & Cross-chain",
+                icon: "⏩",
+                description: "Across is a cross-chain bridge for L2s and mainnet Ethereum that is optimized for speed and low cost. It uses an optimistic oracle and a decentralized network of relayers to fulfill transfer requests instantly, which are then settled on-chain. Across is known for having some of the lowest fees in the industry and a very fast user experience, making it a favorite for users moving funds between Ethereum, Arbitrum, Optimism, and other Layer 2s.",
+                status: "Free",
+                url: "https://across.to/"
+            },
+            {
+                name: "Alchemy",
+                category: "Developer Tools",
+                icon: "⚗️",
+                description: "Alchemy is the world's leading Web3 development platform, providing the critical infrastructure and developer tools needed to build, scale, and optimize blockchain applications. Their suite includes powerful node APIs, monitoring tools, and an enhanced software development kit (SDK) that simplifies complex blockchain interactions. Alchemy powers the vast majority of top DeFi and NFT projects, offering the reliability and performance required for enterprise-grade decentralized software.",
+                status: "Free",
+                url: "https://www.alchemy.com/"
+            },
+            {
+                name: "Infura",
+                category: "Developer Tools",
+                icon: "🏗️",
+                description: "Infura provides the infrastructure that allows developers to easily connect to the Ethereum and IPFS networks. By offering reliable, scalable API access to blockchain nodes, Infura eliminates the need for developers to run and maintain their own full nodes. This significantly lowers the barrier to entry for building decentralized applications, making it one of the most widely used and trusted infrastructure providers in the global blockchain developer community.",
+                status: "Free",
+                url: "https://www.infura.io/"
+            },
+            {
+                name: "Hardhat",
+                category: "Developer Tools",
+                icon: "👷",
+                description: "Hardhat is a development environment to compile, deploy, test, and debug your Ethereum software. It helps developers manage and automate the recurring tasks that are inherent to the process of building smart contracts and DApps. With its powerful plugin system and built-in Hardhat Network (a local Ethereum network), it provides an exceptional developer experience, allowing for fast iteration and comprehensive testing before deploying to production mainnets.",
+                status: "Free",
+                url: "https://hardhat.org/"
+            },
+            {
+                name: "Foundry",
+                category: "Developer Tools",
+                icon: "⚒️",
+                description: "Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust. It consists of Forge, a testing framework; Cast, a swiss army knife for interacting with EVM smart contracts; and Anvil, a local Ethereum node. Foundry is highly praised for its speed and its ability to allow developers to write tests in Solidity, making it an increasingly popular choice for high-performance smart contract development teams.",
+                status: "Free",
+                url: "https://book.getfoundry.sh/"
+            },
+            {
+                name: "The Block",
+                category: "News & Research",
+                icon: "📰",
+                description: "The Block is a leading information services brand in the digital asset space, providing news, research, and data for those who need to understand the evolution of the global financial system. Their team of journalists and analysts delivers deep-dive reports, real-time news updates, and comprehensive data visualizations. The Block is known for its objective reporting and in-depth analysis of the technological and regulatory shifts within the crypto industry.",
+                status: "Paid",
+                url: "https://www.theblock.co/"
+            },
+            {
+                name: "Messari",
+                category: "News & Research",
+                icon: "📊",
+                description: "Messari is the industry's leading provider of crypto market intelligence, helping professionals navigate the crypto economy with confidence. They offer a suite of data tools, research reports, and governance tracking that provide transparency into the decentralized world. Messari's mission is to bring institutional-grade data and analysis to the crypto space, enabling better decision-making for investors, regulators, and developers through their comprehensive and reliable information platform.",
+                status: "Paid",
+                url: "https://messari.io/"
+            },
+            {
+                name: "DeFi Llama",
+                category: "News & Research",
+                icon: "🦙",
+                description: "DeFi Llama is the largest aggregator of Total Value Locked (TVL) for DeFi, providing transparent and unbiased data on thousands of protocols across nearly all blockchains. It offers a wide range of free tools, including yield rankings, airdrop trackers, and volume analytics. DeFi Llama is widely regarded as one of the most reliable and comprehensive data sources in the industry, maintained by a dedicated community focused on open-source financial transparency.",
+                status: "Free",
+                url: "https://defillama.com/"
+            }
+        ];
+
+        function renderTools(filter = 'All', search = '') {
+            const container = document.getElementById('tools-container');
+            container.innerHTML = '';
+
+            const filtered = tools.filter(tool => {
+                const matchesCategory = filter === 'All' || tool.category === filter;
+                const matchesSearch = tool.name.toLowerCase().includes(search.toLowerCase()) || 
+                                    tool.description.toLowerCase().includes(search.toLowerCase()) ||
+                                    tool.category.toLowerCase().includes(search.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: #666;">No tools found matching your criteria.</div>`;
+                return;
+            }
+
+            filtered.forEach(tool => {
+                const card = document.createElement('div');
+                card.className = 'tool-card';
+                card.innerHTML = `
+                    <div class="tool-header">
+                        <div class="tool-icon">${tool.icon}</div>
+                        <div>
+                            <div class="tool-name">${tool.name}</div>
+                            <div class="tool-category">${tool.category}</div>
+                        </div>
+                    </div>
+                    <div class="tool-description">${tool.description}</div>
+                    <div class="tool-footer">
+                        <div class="tool-status ${tool.status === 'Free' ? 'status-free' : 'status-paid'}">${tool.status}</div>
+                        <a href="${tool.url}" class="tool-link" target="_blank">Visit Site</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.innerText === cat || (cat === 'All' && btn.innerText === 'All Tools'));
+            });
+            const searchTerm = document.getElementById('search-input').value;
+            renderTools(cat, searchTerm);
+        }
+
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const activeCatBtn = document.querySelector('.category-btn.active');
+            let activeCat = activeCatBtn.innerText === 'All Tools' ? 'All' : activeCatBtn.innerText;
+            renderTools(activeCat, e.target.value);
+        });
+
+        // Initial render
+        renderTools();
+    </script>
+</body>
+</html>
